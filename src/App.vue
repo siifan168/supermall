@@ -8,7 +8,7 @@
 
 <script>
 // import Home from 'components/common/navbar/NavBar'
-
+  
 import MainTabBar from 'components/content/MainTabBar/MainTabBar'
 export default {
   name: 'App',

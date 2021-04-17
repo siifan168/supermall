@@ -26,8 +26,9 @@ export default {
   },
   methods: {
     itemclick(index) {
-      console.log(index);
+      // console.log(index);
     this.currentIndex = index
+    this.$emit('tabClick',index) //子传父，父亲监听tabclick
     }
   }
   }

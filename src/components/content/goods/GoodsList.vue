@@ -2,7 +2,7 @@
 <template>
   <div class="GoodsList">
     <goods-list-item :key='item.id' v-for="item in goods" :goods-item='item'/>
-    <button @click="click">anniu</button>
+    <!-- <button @click="click">anniu</button> -->
   </div>
 </template>
 
@@ -30,5 +30,10 @@ export default {
 }
 
 </script>
-<style lang='stylus' scoped>
+<style  scoped>
+.GoodsList {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>
