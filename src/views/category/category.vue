@@ -9,12 +9,6 @@
 export default {
   name: 'category',
 
-  components: {},
-
-  computed: {},
-
-
-  methods: {}
 }
 
 </script>

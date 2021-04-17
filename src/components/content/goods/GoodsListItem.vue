@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="goodsListItem">
-    <img :src="goodsItem.show.img" alt="">
+    <img  @click='itemClick' :src="goodsItem.show.img" alt="" @load='imageLoad'>
     <div class="goodsListItemtitle">
       <p class="goodsItem-title">{{goodsItem.title}}</p>
       <span class="price">{{ goodsItem.price}}</span>
@@ -21,6 +21,14 @@ export default {
       }
     }
   },
+  methods: {
+    imageLoad() {
+      this.$bus.$emit('itemImageLoad')
+    },
+    itemClick() {
+      this.$router.push('/detail/')
+    }
+  }
 }
 
 </script>
@@ -33,7 +41,7 @@ export default {
   .goodsListItem img {
     border-radius: .133333rem;
     width: 100%;
-    height: 14rem;
+    /* height: 14rem; */
   }
   .goodsItem-title {
     white-space: nowrap;

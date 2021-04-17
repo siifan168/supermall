@@ -19,6 +19,7 @@ export default {
     top: 0;
     left: 0;
     right: 0;
+    position: relative;
     z-index: 99;
     display: flex;
     line-height: 44px;
