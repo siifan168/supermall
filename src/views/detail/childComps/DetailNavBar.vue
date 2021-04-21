@@ -2,6 +2,9 @@
 <template>
   <div class="detailNavbar">
     <nav-bar>
+      <div slot='left' @click="backClick()" class="back">
+        <img src="~assets/img/common/back.svg" >
+      </div>
      <div slot="center" class="title">
         <div :class='{active: activeIndex == index}'
              @click='itemClick(index)'
@@ -21,18 +24,24 @@ export default {
   data() {
     return {
       activeIndex: 0,
-      titles: ['商品','参数','评论','推荐'],
+      titles: ['商品','参数','评论','推荐']
     }
   },
   components: {
     NavBar
   },
 
+  
   methods: {
   itemClick(index) {
       this.activeIndex = index
-    }
-  }
+      this.$emit('itemClick',index)
+    },
+    
+  backClick() {
+    this.$router.back()
+  },
+  },
 }
 
 </script>
@@ -42,9 +51,12 @@ export default {
   }
   .title-item {
     flex: 1;
-    padding: 5px;
+    /* padding: 5px; */
   }
   .active {
     color: var(--color-tint);
+  }
+  .back {
+    margin-top: 10px;
   }
 </style>

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="goodsListItem">
-    <img  @click='itemClick' :src="goodsItem.show.img" alt="" @load='imageLoad'>
+    <img  @click='itemClick' :src="showImage" alt="" @load='imageLoad'>
     <div class="goodsListItemtitle">
       <p class="goodsItem-title">{{goodsItem.title}}</p>
       <span class="price">{{ goodsItem.price}}</span>
@@ -13,6 +13,11 @@
 <script>
 export default {
   name: 'GoodsListItem',
+  data() {
+    return {
+      iid: null
+    }
+  },
   props: {
     goodsItem: {
       type: Object,
@@ -21,16 +26,31 @@ export default {
       }
     }
   },
+  computed: {
+    showImage() {
+      return this.goodsItem.image || this.goodsItem.show.img
+    }
+  },
   methods: {
     imageLoad() {
-      this.$bus.$emit('itemImageLoad')
+      if(this.$route.path.indexOf('/home')) {
+      this.$bus.$emit('homeItemImageLoad')
+      } else if(this.$route.path.indexOf('/detail')) {
+      this.$bus.$emit('detailItemImageLoad')
+      }
     },
     itemClick() {
-      this.$router.push('/detail/')
+      if(!this.$route.path.indexOf('/home')) {  //路径是从0开始的，所以要取反
+      this.$router.push('/detail/' + this.goodsItem.iid)
+      // console.log(222);
+      } else if(!this.$route.path.indexOf('/detail')) {
+      // this.$router.push('/detail/' + this.goodsItem.shop_id)
+      console.log('无数据');
+      // console.log(this.goodsItem);
+      }
     }
   }
 }
-
 </script>
 <style  scoped>
   .goodsListItem {

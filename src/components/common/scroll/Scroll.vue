@@ -1,23 +1,22 @@
 <!-- BetterScroll -->
 <template>
   <div class="wrapper" ref='wrapper'>
-        <div class="content">
+        <!-- <div class="content"> -->
           <slot></slot>
-        </div>
+        <!-- </div> -->
   </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
-import Pullup from '@better-scroll/pull-up'
-import ObserveDom from '@better-scroll/observe-dom'
+import Pullup from 'better-scroll'
+import ObserveDom from 'better-scroll'
 
 export default {
   name:'Scroll',
   data () {
     return {
       scroll: null,
-      message: '1111',
     };
   },
   props: {
@@ -28,7 +27,7 @@ export default {
     pullUpLoad: {
       type: Boolean,
       default: false
-    }
+    },
   },
   components: {
     BScroll,
@@ -43,7 +42,7 @@ export default {
       this.scroll && this.scroll.finishPullUp()
     },
     refresh() {
-      console.log(this.scroll.refresh);
+      // console.log(this.scroll.refresh);
       this.scroll && this.scroll.refresh()
     },
     getY() {
@@ -52,12 +51,14 @@ export default {
     }
   },
   mounted() {
-      this.scroll = new BScroll(this.$refs.wrapper,{
-      probeType: this.probeType,
-      click: true,
-      pullUpLoad: this.pullUpLoad,
-      observeImage:true,
-      observeDOM: true,
+
+      //初始化better-scroll
+    this.scroll = new BScroll(this.$refs.wrapper,{
+    probeType: this.probeType,
+    click: true,
+    pullUpLoad: this.pullUpLoad,
+    observeImage:true,
+    observeDOM: true,
     })
     //监听滚动位置
     this.scroll.on('scroll',(position) => {

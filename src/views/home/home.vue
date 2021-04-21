@@ -7,19 +7,22 @@
                    ref='tabContral1' 
                    class="tab-control"
                    v-show='isTop'/>
-    <scroll class="content" 
+    <scroll class="wrapper" 
             ref='scroll'
             :probe-type='3'
             @scroll='contentScroll'
             :pull-up-load='true'
             @pullingUp='loadMore'>
-      <home-swiper :banners='banners' @swiperImageLoad='swiperImageLoad'/>
-      <recommend-view :recommends='recommends'/>
-      <feature-view/>
-      <tab-contral @tabClick='tabClick'
-                   :titles="['流行','新款','精选']"
-                   ref='tabContral2'/>
-      <goods-list :goods='goods[currentType].list'/>
+      <div class="content">
+        <home-swiper :banners='banners' @swiperImageLoad='swiperImageLoad'/>
+        <recommend-view :recommends='recommends'/>
+        <feature-view/>
+        <tab-contral @tabClick='tabClick'
+                    :titles="['流行','新款','精选']"
+                    ref='tabContral2'/>
+        <goods-list :goods='goods[currentType].list'/>
+      </div>
+
     </scroll>
     <back-top @click.native='backClick' v-show='isShow'/>
   </div>
@@ -35,13 +38,14 @@ import FeatureView from './childComps/featureView'
 import NavBar from 'components/common/navbar/NavBar'
 import TabContral from 'components/content/tabContral/TabContral'
 import GoodsList from 'components/content/goods/GoodsList'
-import BackTop from 'components/content/backTop/BackTop'
 
 //功能引入
 import {getHomeMultidata,getHomeGoods} from 'network/Home'
 // import debounce from 'common/utils'
+import {listenBacTopMixin} from 'common/mixins'
 
 //betterscroll插件引入
+import Bscroll from 'better-scroll'
 import Scroll from 'components/common/scroll/Scroll'
 
 export default {
@@ -59,10 +63,10 @@ export default {
       },
       isShow: false,
       tabOffsetTop: 0,
-      isTop: false,
       saveY: 0
     }
   },
+  mixins: [listenBacTopMixin],
   // computed: {
   //   showGoods: {
   //     return goods[currentType].list
@@ -76,7 +80,7 @@ export default {
     NavBar,
     GoodsList,
     Scroll,
-    BackTop,
+    Bscroll,
   },
   created() {
     //请求多个数据
@@ -89,7 +93,7 @@ export default {
   mounted() {
     const refresh = this.debounce(this.$refs.scroll.refresh,200)
     //监听itemImageLoad
-    this.$bus.$on('itemImageLoad',() => {
+    this.$bus.$on('homeItemImageLoad',() => {
       refresh
     })
   },
@@ -139,15 +143,12 @@ export default {
         this.$refs.scroll.finishPullUp()
     })
     },
-    backClick() {
-    this.$refs.scroll.scrollTo(0,0,500)
-    },
     contentScroll(position) {
       // console.log(this.$refs.scroll);
       //监听返回顶部是否显示
-    this.isShow = (-position.y) > 800
+    this.demo(position)
     //决定tabcontral是否吸顶（position: fixed）
-    this.isTop = (-position.y) > this.tabOffsetTop - 44
+    this.isShow = -position.y > this.tabOffsetTop
     },
     loadMore() {
       //加载更多

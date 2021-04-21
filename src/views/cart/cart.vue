@@ -1,7 +1,6 @@
 <!-- 购物车 -->
 <template>
   <div>
-    购物车
   </div>
 </template>
 
@@ -9,10 +8,9 @@
 export default {
   name: 'cart',
 
-  components: {},
-
-  computed: {},
-
+  components: {
+    
+  },  
 
   methods: {}
 }
