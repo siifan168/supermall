@@ -1,13 +1,13 @@
 <!-- 首页 -->
 <template>
-  <div id='home' class="warpper">
+  <div id='home'>
     <nav-bar class="bgc"><div slot='center'>购物街</div></nav-bar>  
       <tab-contral @tabClick='tabClick'
                    :titles="['流行','新款','精选']"
                    ref='tabContral1' 
                    class="tab-control"
                    v-show='isTop'/>
-    <scroll class="wrapper" 
+    <scroll class="content" 
             ref='scroll'
             :probe-type='3'
             @scroll='contentScroll'

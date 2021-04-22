@@ -23,7 +23,7 @@ export const listenBacTopMixin = {
       this.$refs.scroll.scrollTo(0,0,500)
     },
     demo(position) {
-      this.isTop = (-position.y) > this.tabOffsetTop - 44
+      this.isTop = (-position.y) > this.tabOffsetTop - 49
     }
   },
   components: {

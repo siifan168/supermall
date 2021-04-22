@@ -1,9 +1,9 @@
 <!-- BetterScroll -->
 <template>
   <div class="wrapper" ref='wrapper'>
-        <!-- <div class="content"> -->
+        <div class="content">
           <slot></slot>
-        <!-- </div> -->
+        </div>
   </div>
 </template>
 
@@ -51,7 +51,6 @@ export default {
     }
   },
   mounted() {
-
       //初始化better-scroll
     this.scroll = new BScroll(this.$refs.wrapper,{
     probeType: this.probeType,
@@ -79,4 +78,5 @@ export default {
 
 </script>
 <style scoped>
+  
 </style>

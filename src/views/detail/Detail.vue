@@ -2,15 +2,19 @@
 <template>
   <div id='detail'>
       <detail-nav-bar ref="nav" class="detail-nav-bar" @itemClick='titleClick' :probe-type='3' @scroll='contentScroll'/>
-    <scroll class="wrapper" ref='scroll'>
-      <div class="content">
-      <detail-swiper :top-images='topImages'/>
-      <detail-base-info :goods='goods'/>
-      <detail-shop-info :shops='shops'/>
-      <detail-info :detail-info='detailInfo'/>
-      <param-info ref='param' :param-info='paramInfo'/>
-      <detail-comment-info ref='comment' :comment-info='commentInfo'/>
-      <goods-list ref='recommend' :goods='recommend'/>
+    <scroll class="content"
+            ref='scroll'
+            :probe-type='3'
+            @scroll='contentScroll'
+            :pull-up-load='true'>
+      <div>
+        <detail-swiper class="top-images" :top-images='topImages'/>
+        <detail-base-info :goods='goods'/>
+        <detail-shop-info :shops='shops'/>
+        <detail-info :detail-info='detailInfo'/>
+        <param-info ref='param' :param-info='paramInfo'/>
+        <detail-comment-info ref='comment' :comment-info='commentInfo'/>
+        <goods-list ref='recommend' :goods='recommend'/>
       </div>
     </scroll>
     <detail-bottom-bar @addClick='addCart'/>
@@ -143,17 +147,20 @@ export default {
         },delay)
       }
     },
+    //添加到购物车
     addCart() {
       //获取商品信息
       const product = {} 
       product.image = this.topImages[0]
-      product.title = this.GoodsInfo.title
-      product.desc = this.GoodsInfo.desc
-      product.price = this.GoodsInfo.realPrice
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
       product.iid = this.iid;
-
+      // console.log(product);
       //将商品添加到购物车里面
-
+      this.$store.dispatch('addCart',product).then(res => {
+        
+      })
     }
   }
 }
@@ -175,5 +182,9 @@ export default {
   }
   .content {
     height: calc(100% - 44px);
+  }
+  .top-images {
+    padding-top: 44px;
+
   }
 </style>
