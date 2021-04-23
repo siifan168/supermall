@@ -6,7 +6,16 @@
         购物车({{cartLength}})
       </div>
     </nav-bar>
+    <scroll class="content" 
+            ref='scroll'
+            :probe-type='3'
+            @scroll='contentScroll'
+            :pull-up-load='true'>
+      <div>
       <cart-list></cart-list>
+      </div>
+    </scroll>
+    <cart-bottom-bar/>
   </div>
 </template>
 
@@ -14,24 +23,34 @@
 import NavBar from 'components/common/navbar/NavBar'
 import CartList from './childComps/CartList'
 import { mapGetters } from 'vuex'
+import CartBottomBar from './childComps/CartBottomBar'
+import Scroll from 'components/common/scroll/Scroll'
 
 export default {
   name: 'cart',
-
   components: {
     NavBar,
-    CartList
+    CartList,
+    Scroll,
+    CartBottomBar
   },  
   computed: {
     ...mapGetters(['cartLength'])
   },
-  methods: {}
+  methods: {
+    contentScroll() {
+      
+    }
+  },
 }
 
 </script>
 <style scoped>
   #cart {
     height: 100vh;
+  }
+  .content {
+    height: calc(100% - 136px);
   }
   .nav_bar {
     background-color: var(--color-tint);

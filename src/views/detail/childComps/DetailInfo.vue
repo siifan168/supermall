@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div id="detailGoodsInfo">
+  <div id="detailGoodsInfo" >
     <div class="goods-info">
       <div class="info-desc">
         <div class="start"></div>

@@ -30,12 +30,11 @@ export default {
   components: {
     NavBar
   },
-
   
   methods: {
   itemClick(index) {
       this.activeIndex = index
-      this.$emit('itemClick',index)
+      this.$emit('itemClick',this.activeIndex)
     },
     
   backClick() {

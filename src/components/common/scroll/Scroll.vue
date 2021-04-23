@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     scrollTo(x,y,time) {
+      // console.log(this.scroll.scrollTo);
       this.scroll && this.scroll.scrollTo(x,y,time=300)
     },
     finishPullUp() {
@@ -55,6 +56,8 @@ export default {
     this.scroll = new BScroll(this.$refs.wrapper,{
     probeType: this.probeType,
     click: true,
+    // scrollX: false,
+    // scrollY: true,
     pullUpLoad: this.pullUpLoad,
     observeImage:true,
     observeDOM: true,

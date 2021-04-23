@@ -22,7 +22,6 @@
                     ref='tabContral2'/>
         <goods-list :goods='goods[currentType].list'/>
       </div>
-
     </scroll>
     <back-top @click.native='backClick' v-show='isShow'/>
   </div>
@@ -45,7 +44,6 @@ import {getHomeMultidata,getHomeGoods} from 'network/Home'
 import {listenBacTopMixin} from 'common/mixins'
 
 //betterscroll插件引入
-import Bscroll from 'better-scroll'
 import Scroll from 'components/common/scroll/Scroll'
 
 export default {
@@ -80,7 +78,6 @@ export default {
     NavBar,
     GoodsList,
     Scroll,
-    Bscroll,
   },
   created() {
     //请求多个数据

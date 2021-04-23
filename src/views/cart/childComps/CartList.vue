@@ -1,9 +1,9 @@
 <!--  -->
 <template>
   <div id="cart-list">
-    <scroll class="content">
+    <scroll ref="scroll" class="content">
       <!-- <div v-for="item in cartList" :key='item.id'>item</div> -->
-      <cart-list-item :key="item.id" v-for="item in CartList" :product='item'/>
+      <cart-list-item :key="item.id" v-for="item in cartList" :product='item'/>
     </scroll>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
     ...mapGetters([
       'cartList'
     ])
+  },
+  activated() {
+    this.$refs.scroll.refresh()
   }
 }
 

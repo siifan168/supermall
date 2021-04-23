@@ -8,6 +8,7 @@ export default {
   },
   [ADD_TO_CART](state, payload) {
     payload.count = 1
-    state.CartList.push(payload)
+    payload.checked = true
+    state.cartList.push(payload)
   }
 }

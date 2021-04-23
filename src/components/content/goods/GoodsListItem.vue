@@ -33,9 +33,9 @@ export default {
   },
   methods: {
     imageLoad() {
-      if(this.$route.path.indexOf('/home')) {
+      if(this.$route.path.indexOf('/home') != -1) {
       this.$bus.$emit('homeItemImageLoad')
-      } else if(this.$route.path.indexOf('/detail')) {
+      } else if(this.$route.path.indexOf('/detail') != -1) {
       this.$bus.$emit('detailItemImageLoad')
       }
     },
