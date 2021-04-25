@@ -37,11 +37,10 @@ export default {
 <style  scoped>
 #detail-bottom-bar {
   height: 49px;
+  width: 100%;
   background-color: #fff;
   position: fixed;
   bottom: -3px;
-  left: 0;
-  right: 0;
   z-index: 99;
 }
 .left {
@@ -71,9 +70,6 @@ export default {
 }
 .icon2 {
   background-position: 0 -130px;
-}
-.icon3 {
-  background-position: 0 0;
 }
 .right {
   display: flex;

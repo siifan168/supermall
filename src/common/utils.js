@@ -1,4 +1,6 @@
-export function debounce(func,delay = 300) {
+
+//封装防抖函数
+export function debounce(func, delay = 300) {
   let timer = null
   console.log(111);
   return function(...args) {
@@ -8,8 +10,29 @@ export function debounce(func,delay = 300) {
    },delay)
   }
 }
-    //封装防抖函数
-    
+ 
+//封装节流函数
+export function throttling(fn, delay = 300) {
+  let timer = null
+  let context, args
+
+  let run = () => {
+    timer = setTimeout(() => {
+      fn.apply(context, args)
+      clearTimeout(timer)
+      timer = null
+    },delay)
+  }
+
+  return function () {
+    context = this
+    args = arguments
+    if (!timer) {
+      run()
+    }
+  }
+}
+
 export function formatDate(date, fmt) {
   if (/(y+)/.test(fmt)) { //RegExp.$1是匹配到的结果，yyyy
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))

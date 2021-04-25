@@ -17,6 +17,7 @@
 </template>
 <script>
 import CheckButton from 'components/content/checkButton/CheckButton'
+import { throttling } from 'common/utils'
 
 export default {
   name: 'CartListItem',
@@ -33,10 +34,9 @@ export default {
     }
   },
   methods: {
-    clickCheck() {
-      console.log(1);
+    clickCheck: throttling(function(){
       this.product.checked = !this.product.checked
-    }
+    },200)
   }
 }
 </script>

@@ -24,19 +24,32 @@ export default {
   },
   computed: {
     ...mapGetters(['cartList']),
-    totalPrice() {
-      return 0
-    },
     calculate() {
       return 0
     },
     isSelectAll() {
      return  !(this.cartList.filter(item => !item.checked).length)
+    },
+    totalPrice() {
+      let total = 0
+      for(const item of this.cartList) {
+        if(item.checked)
+        total += (item.price * item.count)
+      }
+      // for(let i = 0; i< this.cartList.length; i++) {
+      //   if(this.cartList[i].checked)
+      //   total += this.cartList[i].price * this.cartList[i].count
+      // }
+      return total.toFixed(2)
     }
   },
   methods: {
     checkAll() {
-      console.log(this.isSelectAll);
+      let a = !this.isSelectAll
+      this.isSelectAll = a
+      for(const item of this.cartList) {
+        item.checked = a
+      }
     }
   }
 }

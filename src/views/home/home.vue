@@ -172,9 +172,6 @@ export default {
 </script>
 <style scoped>
 #home {
-  /*
-  vh视口高度
-  */
   height: 100vh;
   position: relative;
 }

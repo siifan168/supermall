@@ -1,9 +1,9 @@
 <!-- NAVBAR -->
 <template>
   <div class='nav-bar'>
-    <div class='left'><slot name='left'></slot></div>
-    <div class="center"><slot name='center'></slot></div>
-    <div class="right"><slot name='right'></slot></div>
+    <span class='left'><slot name='left'></slot></span>
+    <span class="center"><slot name='center'></slot></span>
+    <span class="right"><slot name='right'></slot></span>
   </div>
 </template>
 
@@ -17,22 +17,20 @@ export default {
   .nav-bar {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    position: relative;
     z-index: 99;
     display: flex;
     line-height: 44px;
     height: 44px;
     text-align: center;
+    width: 100%;
     box-shadow: 0px 1px 1px rgba(100,100,100,.1);
   }
   .left,.right {
-    width: 60px;
+    margin-top: 5px;
+    width: 10%;
     /* background-color: pink; */
   }
   .center {
     flex: 1;
-    /* background-color: skyblue; */
   }
 </style>

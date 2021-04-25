@@ -2,7 +2,7 @@
 <template>
   <div class="detailNavbar">
     <nav-bar>
-      <div slot='left' @click="backClick()" class="back">
+      <div slot='left' @click="backClick" class="back">
         <img src="~assets/img/common/back.svg" >
       </div>
      <div slot="center" class="title">
@@ -47,6 +47,7 @@ export default {
 <style  scoped>
   .title {
     display: flex;
+    width: 100%;
   }
   .title-item {
     flex: 1;
@@ -55,7 +56,7 @@ export default {
   .active {
     color: var(--color-tint);
   }
-  .back {
-    margin-top: 10px;
-  }
+  /* .back {
+    margin-top: 10%;
+  } */
 </style>
